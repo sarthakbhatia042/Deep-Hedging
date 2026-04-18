@@ -157,13 +157,6 @@ Key parameters you can tune:
 
 ---
 
-## 📖 References
-
-1. Buehler, H., Gonon, L., Teichmann, J., & Wood, B. (2019). *Deep Hedging*. Quantitative Finance.
-2. Murray, P., Wood, B., Buehler, H., Wiese, M., & Pham, M. (2022). *Deep Hedging: Hedging Derivatives Under Generic Market Frictions Using Reinforcement Learning*. Swiss Finance Institute.
-
----
-
 ## 📜 License
 
 MIT License — See [LICENSE](LICENSE) for details.
