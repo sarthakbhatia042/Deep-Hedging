@@ -62,7 +62,7 @@ Action = New hedge ratio ∈ [0, 1]
 ### 1. Setup
 
 
-# Create virtual environment
+### Create virtual environment
 python -m venv .dhenv
 source .dhenv/bin/activate
 
