@@ -61,10 +61,6 @@ Action = New hedge ratio ∈ [0, 1]
 
 ### 1. Setup
 
-```bash
-# Clone the repository
-git clone <your-repo-url>
-cd "Deep Hedging"
 
 # Create virtual environment
 python -m venv .dhenv
