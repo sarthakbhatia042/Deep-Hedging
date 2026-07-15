@@ -63,6 +63,8 @@ Action = New hedge ratio ∈ [0, 1]
 
 
 ### Create virtual environment
+```
+
 python -m venv .dhenv
 source .dhenv/bin/activate
 
@@ -70,7 +72,7 @@ source .dhenv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Launch the Dashboard
+2. Launch the Dashboard
 
 ```bash
 streamlit run app.py
