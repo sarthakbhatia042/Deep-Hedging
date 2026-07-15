@@ -1,4 +1,4 @@
-# 📈 Deep Hedging — Cash-Invariant Deep Bellman Hedging
+# Deep Hedging — Cash-Invariant Deep Bellman Hedging
 
 A reinforcement learning system that learns to optimally hedge European call options using a **Cash-Invariant Deep Bellman Hedging (DBH)** agent with an entropic risk measure. The trained neural network outperforms classical Black-Scholes delta hedging in the presence of transaction costs and discrete rebalancing.
 
@@ -8,7 +8,7 @@ A reinforcement learning system that learns to optimally hedge European call opt
 
 ---
 
-## 🧠 What is Deep Hedging?
+## What is Deep Hedging?
 
 Traditional option hedging uses the **Black-Scholes delta** — a closed-form formula that assumes continuous trading and zero transaction costs. In reality:
 
@@ -30,7 +30,7 @@ This makes the agent **risk-averse** — it penalizes large losses more than it 
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -57,14 +57,13 @@ Action = New hedge ratio ∈ [0, 1]
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Setup
 
 
-### Create virtual environment
+   Create virtual environment
 ```
-
 python -m venv .dhenv
 source .dhenv/bin/activate
 
@@ -72,17 +71,17 @@ source .dhenv/bin/activate
 pip install -r requirements.txt
 ```
 
-2. Launch the Dashboard
+### 2. Launch the Dashboard
 
 ```bash
 streamlit run app.py
 ```
 
 This opens an **interactive web dashboard** where you can:
-- 🎯 Train the agent with custom parameters
-- 📊 Backtest against Black-Scholes delta hedging
-- 🗺️ Visualize the learned hedge surface
-- 📚 Read about the theory
+- Train the agent with custom parameters
+- Backtest against Black-Scholes delta hedging
+- Visualize the learned hedge surface
+- Read about the theory
 
 ### 3. Train via CLI
 
@@ -99,46 +98,46 @@ python train.py --help
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Deep Hedging/
-├── app.py                       # 🖥️  Streamlit dashboard
-├── train.py                     # ⌨️  CLI training entry point
-├── requirements.txt             # 📦 Dependencies
+├── app.py                       # Streamlit dashboard
+├── train.py                     # CLI training entry point
+├── requirements.txt             # Dependencies
 │
 ├── models/
-│   └── cash_invariant_dbh.py    # 🧠 Actor-Critic neural network
+│   └── cash_invariant_dbh.py    # Actor-Critic neural network
 │
 ├── environment/
-│   ├── market_sim.py            # 📈 GBM simulator + BS analytics
-│   └── option_env.py            # 🎮 Batched RL hedging environment
+│   ├── market_sim.py            # GBM simulator + BS analytics
+│   └── option_env.py            # Batched RL hedging environment
 │
 ├── training/
-│   ├── config.py                # ⚙️  Hyperparameter configuration
-│   └── trainer.py               # 🏋️ Training loop
+│   ├── config.py                # Hyperparameter configuration
+│   └── trainer.py               # Training loop
 │
 ├── evaluation/
-│   ├── metrics.py               # 📏 Risk metrics (VaR, CVaR, Sharpe)
-│   └── backtester.py            # 🔬 Monte Carlo backtester
+│   ├── metrics.py               # Risk metrics (VaR, CVaR, Sharpe)
+│   └── backtester.py            # Monte Carlo backtester
 │
-└── checkpoints/                 # 💾 Saved model weights
+└── checkpoints/                 # Saved model weights
 ```
 
 ---
 
-## 📊 Dashboard Features
+## Dashboard Features
 
 | Tab | Description |
 |-----|-------------|
-| **🎯 Train & Hedge** | Train the model with a real-time progress bar, view loss curves and single-path simulations |
-| **📊 Backtest** | Monte Carlo comparison of No Hedge vs. Black-Scholes vs. Deep Hedge with PnL distributions |
-| **🗺️ Hedge Surface** | Heatmaps showing how the agent hedges across (price, time) space vs. Black-Scholes |
-| **📚 Theory** | Mathematical explanation of cash-invariant deep hedging |
+| **Train & Hedge** | Train the model with a real-time progress bar, view loss curves and single-path simulations |
+| **Backtest** | Monte Carlo comparison of No Hedge vs. Black-Scholes vs. Deep Hedge with PnL distributions |
+| **Hedge Surface** | Heatmaps showing how the agent hedges across (price, time) space vs. Black-Scholes |
+| **Theory** | Mathematical explanation of cash-invariant deep hedging |
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 Key parameters you can tune:
 
@@ -155,6 +154,6 @@ Key parameters you can tune:
 
 ---
 
-## 📜 License
+## License
 
 MIT License — See [LICENSE](LICENSE) for details.
