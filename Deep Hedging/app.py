@@ -232,7 +232,7 @@ def make_plotly_fig(**kwargs) -> go.Figure:
 
 st.markdown("""
 <div class="main-header">
-    <h1>📈 Deep Hedging</h1>
+    <h1>Deep Hedging</h1>
     <p>Cash-Invariant Deep Bellman Hedging with Entropic Risk Measure — Train, visualize, and backtest a neural network that learns to hedge European call options.</p>
 </div>
 """, unsafe_allow_html=True)
@@ -253,14 +253,14 @@ with st.sidebar:
     T = T_days / 252.0
     n_steps = st.slider("Rebalancing Steps", min_value=5, max_value=60, value=30, step=1)
 
-    st.markdown('<div class="section-header">🧠 MODEL PARAMETERS</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">MODEL PARAMETERS</div>', unsafe_allow_html=True)
 
     risk_aversion = st.slider("Risk Aversion (λ)", min_value=0.1, max_value=10.0, value=1.0, step=0.1,
                                format="%.1f")
     transaction_cost = st.slider("Transaction Cost", min_value=0.0, max_value=0.01, value=0.001,
                                   step=0.0001, format="%.4f")
 
-    st.markdown('<div class="section-header">🏋️ TRAINING</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">TRAINING</div>', unsafe_allow_html=True)
 
     n_episodes = st.slider("Training Episodes", min_value=200, max_value=10000, value=2000, step=200)
     batch_size = st.select_slider("Batch Size", options=[128, 256, 512, 1024, 2048], value=512)
@@ -307,10 +307,10 @@ config = Config(
 # ═══════════════════════════════════════════════════════════════════════
 
 tab_train, tab_backtest, tab_surface, tab_theory = st.tabs([
-    "🎯  Train & Hedge",
-    "📊  Backtest",
-    "🗺️  Hedge Surface",
-    "📚  Theory",
+    "Train & Hedge",
+    "Backtest",
+    "Hedge Surface",
+    "Theory",
 ])
 
 
@@ -346,13 +346,13 @@ with tab_train:
         st.session_state["config"] = config
 
         progress_bar.progress(1.0, text="✓ Training complete!")
-        st.toast("🎉 Model trained successfully!", icon="✅")
+        st.toast("Model trained successfully!")
 
     # ── Show training history ───────────────────────────────────────────
     if "history" in st.session_state and st.session_state["history"] is not None:
         history = st.session_state["history"]
 
-        st.markdown("### 📈 Training Curves")
+        st.markdown("### Training Curves")
         fig_train = make_subplots(
             rows=1, cols=2,
             subplot_titles=("Loss Convergence", "PnL over Training"),
@@ -397,7 +397,7 @@ with tab_train:
 
     # ── Single Path Visualization ───────────────────────────────────────
     if "model" in st.session_state and st.session_state["model"] is not None:
-        st.markdown("### 🔍 Single Path Simulation")
+        st.markdown("### Single Path Simulation")
 
         model = st.session_state["model"]
         model.eval()
@@ -474,7 +474,7 @@ with tab_train:
         fig_path.update_yaxes(title_text="Delta", row=2, col=1)
         st.plotly_chart(fig_path, use_container_width=True)
 
-        if st.button("🔄 Resimulate Path"):
+        if st.button("Resimulate Path"):
             st.rerun()
 
 
@@ -711,7 +711,7 @@ with tab_surface:
 
 # ─── TAB 4: Theory ─────────────────────────────────────────────────────
 with tab_theory:
-    st.markdown("### 📚 How Deep Hedging Works")
+    st.markdown("### How Deep Hedging Works")
 
     st.markdown("""
 <div class="info-box">
@@ -721,14 +721,14 @@ from simulated market data, accounting for realistic market frictions like trans
 </div>
 """, unsafe_allow_html=True)
 
-    st.markdown("#### 🎯 The Hedging Problem")
+    st.markdown("#### The Hedging Problem")
     st.markdown(
         "An option trader **sells** a European call option and receives the premium. "
         "They must then **dynamically trade the underlying stock** to offset the option's risk. "
         "The goal: minimize the variability of the total profit and loss."
     )
 
-    st.markdown("#### 📐 Mathematical Formulation")
+    st.markdown("#### Mathematical Formulation")
 
     st.latex(r"""
     \text{PnL} = \underbrace{\sum_{t=0}^{N-1} \delta_t \cdot (S_{t+1} - S_t)}_{\text{Hedge Gains}}
@@ -736,7 +736,7 @@ from simulated market data, accounting for realistic market frictions like trans
     - \underbrace{\max(S_T - K, 0)}_{\text{Option Payoff}}
     """)
 
-    st.markdown("#### 🧠 Cash-Invariant Bellman Equation")
+    st.markdown("#### Cash-Invariant Bellman Equation")
     st.markdown(
         "Unlike standard RL which uses expected value, we use the **entropic risk measure** "
         "which penalizes downside risk more heavily:"
@@ -758,7 +758,7 @@ from simulated market data, accounting for realistic market frictions like trans
         "shifts the risk by exactly that amount."
     )
 
-    st.markdown("#### 🏗️ Architecture")
+    st.markdown("#### Architecture")
 
     col_arch1, col_arch2 = st.columns(2)
     with col_arch1:
@@ -789,18 +789,18 @@ from simulated market data, accounting for realistic market frictions like trans
             "Discrete Rebalancing",
         ],
         "Black-Scholes": [
-            "❌ Ignored",
+            "Ignored",
             "Quadratic (variance)",
             "GBM, continuous trading",
             "Fixed formula",
             "Suboptimal (designed for continuous)",
         ],
         "Deep Hedging": [
-            "✅ Directly incorporated",
+            "Directly incorporated",
             "Entropic (tail-risk aware)",
             "Any simulated dynamics",
             "Learns from data",
-            "✅ Optimized for discrete steps",
+            "Optimized for discrete steps",
         ],
     }
     st.table(pd.DataFrame(comparison_data).set_index("Feature"))
