@@ -28,7 +28,6 @@ from evaluation.metrics import compute_risk_metrics, compare_strategies
 
 st.set_page_config(
     page_title="Deep Hedging | Cash-Invariant DBH",
-    page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded",
 )
